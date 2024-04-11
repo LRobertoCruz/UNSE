@@ -149,6 +149,9 @@ public class Person {
 
     public void uploadPersonalData() {
         uploadID();
+        uploadLastName();
+        uploadFirstName();
+        uploadAddress();
     }
     
     public int getAge() {
@@ -170,9 +173,35 @@ public class Person {
         return identification.trim().matches("//d+");
     }
     
-    public void uploadLastName() {
+    private void uploadLastName() {
         System.out.print("Apellido:");
         String lastN = InputScanner.readString();
+        
+        setLastName(lastN.trim());
+    }
+    
+    private void uploadFirstName() {
+        System.out.print("Nombre:");
+        String firstN = InputScanner.readString();
+        
+        setFirstName(firstN.trim());
+    }
+    
+    private void uploadAddress() {
+        System.out.print("Dirección:");
+        String ads = InputScanner.readString();
+        
+        setAddress(ads.trim());
+    }
+    
+    private void uploadBirthday() {
+        
+    }
+    
+    private boolean verifyBirthday(LocalDate birthday) {
+        boolean validation = false;
+        
+        return validation;
     }
     
 }
