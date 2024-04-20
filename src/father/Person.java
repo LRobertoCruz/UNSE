@@ -152,6 +152,7 @@ public class Person {
         uploadLastName();
         uploadFirstName();
         uploadAddress();
+        uploadBirthday();
     }
     
     public int getAge() {
@@ -195,13 +196,52 @@ public class Person {
     }
     
     private void uploadBirthday() {
+        System.out.print("Dia:");
+        int day = InputScanner.readInt();
+        System.out.print("Mes:");
+        int month = InputScanner.readInt();
+        System.out.print("Año:");
+        int year = InputScanner.readInt();
+        
+        if (verifyBirthday(year, month, day)) {
+            LocalDate birthd = LocalDate.of(year, month, day);
+            setBirthday(birthd);
+        } else {
+            System.out.println("Datos invalidos...");
+            uploadBirthday();
+        }
+    }
+    
+    private boolean verifyBirthday(int year, int month, int day) {
+        if (year < 1) {
+            return false;
+        }
+        
+        if (month < 1 || month > 12) {
+            return false;
+        }
+        
+        return !(day < 1 || day > dayInMonth(year, month));
+    }
+    
+    private int dayInMonth(int year, int month) {
+        return switch (month) {
+            case 2 -> isLeapYear(year) ? 28 : 29;
+            case 4, 6, 9, 11 -> 30;
+            default -> 31;
+        };
+    }
+    
+    private boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+    
+    private void uploadSex() {
         
     }
     
-    private boolean verifyBirthday(LocalDate birthday) {
-        boolean validation = false;
-        
-        return validation;
+    private boolean verifySex(char sex) {
+        return false;
     }
     
 }
